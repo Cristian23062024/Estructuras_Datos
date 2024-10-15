@@ -76,5 +76,13 @@ class ArbolBin:
     
     def altura(self):
         pass
-    
+
+    def __str__(self):
+        if self.raiz is None:
+            a = '  []\n___|___\n|     |'
+        else:
+            a = f'  [{self.raiz.clave}]\n___|___\n|     |'
+
+        return a
+
     
