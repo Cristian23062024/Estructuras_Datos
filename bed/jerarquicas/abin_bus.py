@@ -30,6 +30,42 @@ class ArbolBinario_Bus(ArbolBin):
         else:
             return self.__encontrar(sub_arbol.der, clave_encotrar)
         return None
-
+    
+    
+    # CONSULTA #1
+    def econtrar_minimo(self):
+        """Método que busca y retorna la clave con menor valor del árbol
+        binario de búsqueda, o retorna None cuando el árbol binario de
+        búsqueda está vacío.
+        Returns
+        -------
+        object|None
+        object si se encuentra la clave con el menor valor del árbol
+        binario de búsqueda. None en caso contrario.
+        """
+        pass
+    
+    # CONSULTA #2
+    def econtrar_maximo(self):
+        """Método que busca y retorna la clave con mayor valor del árbol
+        binario de búsqueda, o retorna None cuando el árbol binario de
+        búsqueda está vacío.
+        Returns
+        -------
+        object|None
+        object si se encuentra la clave con el mayor valor del árbol
+        binario de búsqueda. None en caso contrario.
+        """
+        pass
+    # CONSULTA #3
     def remover(self, clave_remover, mayor=True):
+        """Metodo que remueve un nodo del arbol binario de busqueda
+
+        Parameters
+        ----------
+        clave_remover : _type_
+            _description_
+        mayor : bool, optional
+            _description_, by default True
+        """
         pass
