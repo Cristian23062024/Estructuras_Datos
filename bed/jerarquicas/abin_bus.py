@@ -29,6 +29,7 @@ class ArbolBinario_Bus(ArbolBin):
             return self.__encontrar(sub_arbol.izq, clave_encotrar)
         else:
             return self.__encontrar(sub_arbol.der, clave_encotrar)
+        
         return None
     
     
@@ -43,7 +44,14 @@ class ArbolBinario_Bus(ArbolBin):
         object si se encuentra la clave con el menor valor del árbol
         binario de búsqueda. None en caso contrario.
         """
-        pass
+        if self.raiz is None:
+            return None
+        return self.__encontrar_minimo(self.raiz)
+
+    def __encontrar_minimo(self, nodo):
+        if nodo.izq is None:
+            return nodo.clave
+        return self.__encontrar_minimo(nodo.izq)
     
     # CONSULTA #2
     def econtrar_maximo(self):
@@ -56,16 +64,50 @@ class ArbolBinario_Bus(ArbolBin):
         object si se encuentra la clave con el mayor valor del árbol
         binario de búsqueda. None en caso contrario.
         """
-        pass
+        if self.raiz is None:
+            return None
+        return self.__encontrar_maximo(self.raiz)
+
+    def __encontrar_maximo(self, nodo):
+        if nodo.der is None:
+            return nodo.clave
+        return self.__encontrar_maximo(nodo.der)
+
     # CONSULTA #3
     def remover(self, clave_remover, mayor=True):
         """Metodo que remueve un nodo del arbol binario de busqueda
 
         Parameters
         ----------
-        clave_remover : _type_
-            _description_
+        clave_remover : object
+            La clave del nodo a remover
         mayor : bool, optional
-            _description_, by default True
+            Si es True, reemplaza con el mayor de los menores,
+            si es False, reemplaza con el menor de los mayores.
+            Por defecto es True.
         """
-        pass
+        self.raiz = self.__remover(self.raiz, clave_remover, mayor)
+
+    def __remover(self, nodo, clave_remover, mayor):
+        if nodo is None:
+            return None
+        
+        if clave_remover < nodo.clave:
+            nodo.izq = self.__remover(nodo.izq, clave_remover, mayor)
+        elif clave_remover > nodo.clave:
+            nodo.der = self.__remover(nodo.der, clave_remover, mayor)
+        else:
+            if nodo.izq is None:
+                return nodo.der
+            elif nodo.der is None:
+                return nodo.izq
+            else:
+                if mayor:
+                    sucesor = self.__encontrar_maximo(nodo.izq)
+                    nodo.clave = sucesor
+                    nodo.izq = self.__remover(nodo.izq, sucesor, mayor)
+                else:
+                    sucesor = self.__encontrar_minimo(nodo.der)
+                    nodo.clave = sucesor
+                    nodo.der = self.__remover(nodo.der, sucesor, mayor)
+        return nodo

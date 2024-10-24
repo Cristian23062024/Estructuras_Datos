@@ -8,6 +8,11 @@ def test_numeros():
     abb_num = ArbolBinario_Bus()
     for num in lst_num:
         abb_num.adicionar(num)
+    print(str_in_orden(abb_num))
+    print(abb_num.econtrar_minimo())
+    print(abb_num.econtrar_maximo())
+    print(abb_num.remover(5))
+    print(str_in_orden(abb_num))
         
     num_enc = int(input('Ecriba el numero a encontrar:'))
     print(f'El numero {num_enc}' +
@@ -30,5 +35,5 @@ def test_personas():
 
 
 if __name__ == "__main__":
-    test_personas()
+    test_numeros()
     # Consultar como ana,21 y ana,50 puedan convivir en el mismo arbol
